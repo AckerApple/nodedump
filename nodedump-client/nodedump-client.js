@@ -1467,6 +1467,46 @@ table.nodedump-'+CIRCULARREFERENCE+' td.nodedump-'+CIRCULARREFERENCE+', table.no
 table.nodedump-'+CIRCULARREFERENCE+' td.nodedump-label { color: #ffffff; }\n\
 </style>';
 
+dump.toggleRow = function(source){
+  var target = (document.all) ? source.parentElement.cells[1] : source.parentNode.lastChild;
+  this.toggleTarget(target,this.toggleSource(source));
+}
+
+dump.toggleSource = function(source){
+  if (source.style.fontStyle == 'italic') {
+    source.style.fontStyle='normal';
+    source.title='" + TITLEEXPANDED + "';
+    return 'open';
+  } else {
+    source.style.fontStyle='italic';
+    source.title='" + TITLECOLLAPSED + "';
+    return 'closed';
+  }
+}
+
+dump.toggleTarget = function(target,switchToState){
+  target.style.display = (switchToState == 'open') ? '' : 'none';
+}
+
+dump.toggleTable = function(source){
+  var switchToState=this.toggleSource(source);
+  if(document.all) {
+    var table=source.parentElement.parentElement;
+    for(var i=1;i<table.rows.length;i++) {
+      target=table.rows[i];
+      this.toggleTarget(target,switchToState);
+    }
+  } else {
+    var table=source.parentNode.parentNode;
+    for (var i=1;i<table.childNodes.length;i++) {
+      target=table.childNodes[i];
+      if(target.style) {
+        this.toggleTarget(target,switchToState);
+      }
+    }
+  }
+}
+
 var JS = "<script type=\"text/javascript\">\n\
 	// based on CFDump's js\n\
 	var nodedump;\n\

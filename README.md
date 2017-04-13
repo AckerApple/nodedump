@@ -302,3 +302,7 @@ You can do this even when initializing nodedump with default options:
 d = require('nodedump').init({ expand: false }).dump;
 ```
 
+
+### Credits
+
+- original author: [andrew hewitt])(https://github.com/ragamufin/nodedump)

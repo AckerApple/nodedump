@@ -1,3 +1,6 @@
+# 0.0.9
+- exposed functions in ./nodedump-client/nodedump-client-min.js
+
 # 0.0.8
 - Added the ability to skip over data types like Functions when dumping: https://github.com/ragamufin/nodedump/pull/8
 - Fixed issue array keys not being sorted properly: https://github.com/ragamufin/nodedump/pull/8#issuecomment-47699217
